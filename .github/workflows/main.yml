@@ -13,16 +13,14 @@ jobs:
   test-gcp:
     runs-on: ubuntu-latest
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - id: auth
-      name: 'Authincation to GCP'
-      uses: google-github-actions/auth@v2.0.0  
-      with:
-        workload_identity_provider: 'principal://iam.googleapis.com/projects/882099283079/locations/global/workloadIdentityPools/github-gcp/subject/SUBJECT_ATTRIBUTE_VALUE'
-        service_account: 'github-gcp@project-7cdc1739-86ea-4d27-ac3.iam.gserviceaccount.com'
-
-    - name: 'List Bucket'
-      run: gcloud storage lit
+      - uses: actions/checkout@v4
+      
+      - id: 'auth'
+        name: 'Authincation to GCP'
+        uses: 'google-github-actions/auth@v2' 
+        with:
+          workload_identity_provider: 'principal://iam.googleapis.com/projects/882099283079/locations/global/workloadIdentityPools/github-gcp/subject/SUBJECT_ATTRIBUTE_VALUE'
+          service_account: 'github-gcp@project-7cdc1739-86ea-4d27-ac3.iam.gserviceaccount.com'
+          
+       - name: 'List Bucket'
+        run: gcloud storage lit
