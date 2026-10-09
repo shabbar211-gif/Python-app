@@ -1,9 +1,5 @@
 name: 'GCP Fed Test'
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+on: [push]
 
 permissions:
   contents: read
@@ -22,5 +18,7 @@ jobs:
           workload_identity_provider: 'principal://iam.googleapis.com/projects/882099283079/locations/global/workloadIdentityPools/github-gcp/subject/SUBJECT_ATTRIBUTE_VALUE'
           service_account: 'github-gcp@project-7cdc1739-86ea-4d27-ac3.iam.gserviceaccount.com'
           
-       - name: 'List Bucket'
-        run: gcloud storage lit
+      -  name: 'List Bucket'
+         run: gcloud storage lit
+
+         
